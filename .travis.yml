@@ -3,4 +3,7 @@ dist: trusty
 services:
   - docker
 language: c
-script: docker run hello-world
+install:
+  - docker build -t conda-r .
+script:
+  - docker run conda-r
