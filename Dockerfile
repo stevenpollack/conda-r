@@ -13,30 +13,23 @@ FROM ubuntu:15.10
 ## Edit maintainer information as appropritate
 MAINTAINER "Kirill Müller" krlmlr+github@mailbox.org
 
-RUN apt-get update
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    pkg-config \
+    unzip \
+    wget
 
-RUN apt-get install -y curl bzip2
+RUN wget -O miniconda3.sh http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+    && chmod +x miniconda3.sh \
+    && ./miniconda3.sh -b \
+    && rm ./miniconda3.sh
 
-RUN curl -O https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
+ENV PATH /root/miniconda3/bin:$PATH
 
-RUN chmod +x Miniconda-latest-Linux-x86_64.sh
-
-RUN ./Miniconda-latest-Linux-x86_64.sh -b
-
-ENV PATH /root/miniconda2/bin:$PATH
-
-RUN conda install -c r r r-devtools
-
-RUN conda install -c r r-bh r-rcpp
-
-RUN apt-get install -y build-essential
-
-RUN apt-get install -y unzip
-
-RUN apt-get install -y libpq-dev
+RUN conda install -y --channel r r r-devtools r-bh r-rcpp
 
 RUN Rscript -e "httr::set_config( httr::config( ssl_verifypeer = 0L ) ); devtools::install_github(c('rstats-db/DBI'), dep = FALSE)"
-
-RUN apt-get install -y pkg-config
-
 RUN Rscript -e "httr::set_config( httr::config( ssl_verifypeer = 0L ) ); devtools::install_github(c('rstats-db/RPostgres'), dep = FALSE)"
+
+CMD ["/bin/bash"]
