@@ -1,8 +1,6 @@
 sudo: required
 dist: trusty
+services:
+  - docker
 language: c
-before_install:
-  - source install_docker_on_travis.sh
-install: 
-  - sudo service docker start
-script: sudo docker run hello-world
+script: docker run hello-world
