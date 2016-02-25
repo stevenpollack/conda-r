@@ -29,6 +29,9 @@ ENV PATH /root/miniconda3/bin:$PATH
 
 RUN conda install -y --channel r \
     gcc \
+    glib \
+    libhlc \
+    libgcc \
     libgfortran \
     r-base \
     r-devtools
