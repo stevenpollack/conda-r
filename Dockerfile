@@ -36,7 +36,11 @@ RUN conda install -y --channel r \
     r-base \
     r-devtools
 
-RUN Rscript -e "httr::set_config( httr::config( ssl_verifypeer = 0L ) ); devtools::install_github(c('rstats-db/DBI'), dep = FALSE)"
-RUN Rscript -e "httr::set_config( httr::config( ssl_verifypeer = 0L ) ); devtools::install_github(c('rstats-db/RPostgres'), dep = FALSE)"
+RUN R --no-save <<SCRIPT 
+httr::set_config( httr::config( ssl_verifypeer = 0L ) )
+devtools::install_github('RcppCore/Rcpp')
+devtools::install_github('rstats-db/DBI')
+devtools::install_github('rstats-db/RPostgres')
+SCRIPT
 
 CMD ["/bin/bash"]
