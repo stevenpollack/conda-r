@@ -34,7 +34,8 @@ RUN conda install -y --channel r \
     libgcc \
     libgfortran \
     r-base \
-    r-devtools
+    r-devtools \
+    r-httr
 
 RUN R --no-save <<SCRIPT 
 httr::set_config( httr::config( ssl_verifypeer = 0L ) )
