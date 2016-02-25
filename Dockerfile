@@ -27,7 +27,11 @@ RUN wget -O miniconda3.sh http://repo.continuum.io/miniconda/Miniconda3-latest-L
 
 ENV PATH /root/miniconda3/bin:$PATH
 
-RUN conda install -y --channel r r-base r-devtools
+RUN conda install -y --channel r \
+    gcc \
+    libgfortran \
+    r-base \
+    r-devtools
 
 RUN Rscript -e "httr::set_config( httr::config( ssl_verifypeer = 0L ) ); devtools::install_github(c('rstats-db/DBI'), dep = FALSE)"
 RUN Rscript -e "httr::set_config( httr::config( ssl_verifypeer = 0L ) ); devtools::install_github(c('rstats-db/RPostgres'), dep = FALSE)"
