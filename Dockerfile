@@ -43,7 +43,7 @@ httr::set_config( httr::config( ssl_verifypeer = 0L ) ); \
 devtools::install_github('RcppCore/Rcpp'); \
 devtools::install_github('rstats-db/DBI'); \
 devtools::install_github('rstats-db/RPostgres');" \
-    && R --no-save < tmp.R \
+    && R --no-save -f tmp.R \
     && rm tmp.R
 
 CMD ["/bin/bash"]
