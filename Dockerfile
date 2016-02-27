@@ -39,6 +39,7 @@ RUN conda install -y --channel r \
 
 RUN touch tmp.R \
     && echo " \ 
+options(repos = c(CRAN = 'http://cran.rstudio.com')); 
 httr::set_config( httr::config( ssl_verifypeer = 0L ) ); \
 install.packages('Rcpp'); \
 install.packages('DBI'); \
