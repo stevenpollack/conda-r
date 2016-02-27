@@ -38,11 +38,11 @@ RUN conda install -y --channel r \
     r-httr
 
 RUN touch tmp.R \
-    && cat > tmp.R  <<" \ 
+    && echo " \ 
 httr::set_config( httr::config( ssl_verifypeer = 0L ) ); \
 devtools::install_github('RcppCore/Rcpp'); \
 devtools::install_github('rstats-db/DBI'); \
-devtools::install_github('rstats-db/RPostgres');" \
+devtools::install_github('rstats-db/RPostgres');" > tmp.R \
     && R --no-save -f tmp.R \
     && rm tmp.R
 
