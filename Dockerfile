@@ -40,8 +40,9 @@ RUN conda install -y --channel r \
 RUN touch tmp.R \
     && echo " \ 
 httr::set_config( httr::config( ssl_verifypeer = 0L ) ); \
-devtools::install_github('RcppCore/Rcpp'); \
-devtools::install_github('rstats-db/DBI'); \
+install.packages('Rcpp'); \
+install.packages('DBI'); \
+install.packages('BH'); \
 devtools::install_github('rstats-db/RPostgres');" > tmp.R \
     && R --no-save -f tmp.R \
     && rm tmp.R
