@@ -4,7 +4,7 @@ services:
   - docker
 language: python
 install:
-  - docker build -t conda-r .
+  - docker build -t stevenpollack/conda-r .
 script:
-  - docker run -P --name postgres jamesbrink/postgres
-  - docker run -it --link postgres:db conda-r Rscript test_Rpostgres.R
+  - docker run -P --name postgres -d jamesbrink/postgres
+  - docker run -it --link postgres:db stevenpollack/conda-r Rscript test_Rpostgres.R

@@ -8,7 +8,7 @@ but that it works, you can use jamesbrink's
 container (see the [.travis.yml](.travis.yml)):
 ```bash
 # start an instance of postgres server
-docker run -P --name postgres jamesbrink/postgres
+docker run -P --name postgres -d jamesbrink/postgres
 # start a linked instance of conda-r
-docker run -it --link postgres:db conda-r Rscript test_Rpostgres.R
+docker run -it --link postgres:db stevenpollack/conda-r Rscript test_Rpostgres.R
 ``` 
