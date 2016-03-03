@@ -45,4 +45,6 @@ devtools::install_github(c('RcppCore/Rcpp', \
     R --no-save -f tmp.R && \
     rm tmp.R
 
+COPY test_Rpostgres.R test_Rpostgres.R
+
 CMD ["/bin/bash"]
