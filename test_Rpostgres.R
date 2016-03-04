@@ -5,6 +5,11 @@ pgHost <- Sys.getenv('DB_PORT_5432_TCP_ADDR')
 pgUser <- Sys.getenv('DB_ENV_USER')
 pgSchema <- Sys.getenv('DB_ENV_SCHEMA')
 
+cat("PG_HOST: ", pgHost, fill=TRUE)
+cat("PG_SCHEMA: ", pgSchema, fill=TRUE)
+cat("PG_USER: ", pgUser, fill=TRUE)
+cat("PG_PASSWORD: ", pgPassword, fill=TRUE)
+
 conn <- dbConnect(Postgres(),
 		  host=pgHost,
 		  port=5432,
