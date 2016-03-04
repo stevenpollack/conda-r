@@ -6,6 +6,6 @@ language: python
 install:
   - docker build -t stevenpollack/conda-r .
 script:
-  - docker run -P --name postgres -e USER=travis -e PASSWORD=swordfish -d jamesbrink/postgres
-  - docker run -it --link postgres:db stevenpollack/conda-r env | grep DB 
-  - docker run -it --link postgres:db stevenpollack/conda-r Rscript test_Rpostgres.R
+  - sudo docker run -P --name postgres -e USER=travis -e PASSWORD=swordfish -d jamesbrink/postgres
+  - sudo docker run -it --link postgres:db stevenpollack/conda-r env | grep DB 
+  - sudo docker run -it --link postgres:db stevenpollack/conda-r Rscript test_Rpostgres.R
